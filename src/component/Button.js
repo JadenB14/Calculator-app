@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from 'react'
 
-export default function Button( {setTotal, setMultiples, setOperaton, multiples, operation} ) {
-const [nums, setNums] = useState([]);
+export default function Button( {setMultiples, setOperaton, multiples, operation, nums, setNums} ) {
 const [multipleBool, setMultipleBool] = useState(false);
 
-
-
-  useEffect(() => {
-    setTotal([...nums].join(''));
-  }, [nums]);
-
-
+  //  Adds the number clicked to the correct array
+  //  and limits the total number of elements in
+  //  the array to 13 or 12 when inputting the
+  //  second portion of the calculations 
   function handleNumberClick(e) {
+    const prevMultiples = [...multiples];
+    const prevNums = [...nums];
+
     if (multipleBool) {
-        const prevMultiples = [...multiples];
+      if (multiples.length === 12) return;
         setMultiples([...prevMultiples, e.target.value]);
         return;
     }
-    const prevNums = [...nums];
+    if (nums.length === 13) return;
     setNums([...prevNums, e.target.value]);
   }
 
+  //  Clears the calulator in steps depending on the 
+  //  stage of calcualtions you're on.
   function handleClearClick() {
     if(multipleBool) {
         setMultiples([]);
@@ -35,11 +36,19 @@ const [multipleBool, setMultipleBool] = useState(false);
     setNums([]);
   }
 
+  //  Changes the current calculations to its equivalent percentage 
   function handlePercentClick() {
-    const percentage = [...nums].join('') / 100;
-    setNums(percentage.toString().split(''));
+    const numsPercentage = [...nums].join('') / 100;
+    const multiplesPercentage = [...multiples].join('') / 100;
+
+    if (multipleBool) {
+      setMultiples(multiplesPercentage.toString().split(''));
+      return;
+    }
+    setNums(numsPercentage.toString().split(''));
   }
   
+  //  Adds in a SINGLE decimal point whenever specified 
   function handleDecimalClick() {
     const newNums = [...nums];
     const newMultiples = [...multiples]
@@ -56,9 +65,11 @@ const [multipleBool, setMultipleBool] = useState(false);
 
   }
 
+  //  Changes the sign of the current calculation.
   function handleSignChangeClick() {
     const negNums = [...nums].join('') * -1;
     const negMultiples = [...multiples].join('') * -1;
+
     if (multipleBool) {
       setMultiples(negMultiples.toString().split(''));
     }
@@ -66,26 +77,32 @@ const [multipleBool, setMultipleBool] = useState(false);
     setNums(negNums.toString().split(''));
   }
 
+  //  Set the opertaion mode to division.
   function handleDivideClick() {
-    setOperaton('/')
+    setOperaton('÷')
     setMultipleBool(true);
   }
 
+  //  Set the opertaion mode to multiplication.
   function handleMultiplyClick() {
     setOperaton('x');
     setMultipleBool(true);
   }
   
+  //  Set the opertaion mode to subtraction.
   function handleSubtractClick() {
     setOperaton('-');
     setMultipleBool(true);
   }
 
+  //  Set the opertaion mode to addition.
   function handleAdditionClick() {
-    setOperaton('+');
-    setMultipleBool(true);
+    setOperaton('+');   
+    setMultipleBool(true);   
   }
 
+  //  Checks which operation is choosen and then 
+  //  provides the calculation when the button is pressed.
   function handleEqualsClick() {
     const newNums = [...nums].join('');
     const newMultiples = [...multiples].join('');
@@ -94,37 +111,38 @@ const [multipleBool, setMultipleBool] = useState(false);
     const multiplied = newNums * newMultiples;
     const subtracted = newNums - newMultiples;
     const added = Number(newNums) + Number(newMultiples);
-  
-        if (operation === '/') {
-            setMultipleBool(false);
-            setOperaton('');
-            setMultiples([]);
-            setNums(divided.toString().split(''))
-        } else if (operation === 'x') {
-            setMultipleBool(false);
-            setOperaton('');
-            setMultiples([]);
-            setNums(multiplied.toString().split(''));
-        } else if (operation === '-') {
-            setMultipleBool(false);
-            setOperaton('');
-            setMultiples([]);
-            setNums(subtracted.toString().split(''));
-        }  else if(operation === '+') {
-            setMultipleBool(false);
-            setOperaton('');
-            setMultiples([]);
-            setNums(added.toString().split(''));
-        }
+
+    if (operation === '÷') {      
+      setNums(divided.toString().split(''));      
+      reset();      
+    } else if (operation === 'x') {     
+      setNums(multiplied.toString().split(''))      
+      reset();;      
+    } else if (operation === '-') {     
+      setNums(subtracted.toString().split(''));      
+      reset();                
+    } else if(operation === '+') {     
+      setNums(added.toString().split(''));      
+      reset();      
+    }  
+
+  }
+
+  //  A helper function to keep the above function
+  //  cleaner.
+  function reset() {
+    setMultipleBool(false);
+    setOperaton('');
+    setMultiples([]);
   }
 
 return (
     <>
     <div className='first-buttons'>
+        <button className='button-clear' onClick={handleClearClick}>AC</button>      
         <button className='button-change' onClick={handleSignChangeClick}>+/-</button>
-        <button className='button-clear' onClick={handleClearClick}>AC</button>
         <button className='button-percent' onClick={handlePercentClick}>%</button>
-        <button className='button-divide' onClick={handleDivideClick}>/</button>
+        <button className='button-divide' onClick={handleDivideClick}>÷</button>
     </div>
     <div className='second-buttons'>
         <button className='button-seven' value={7} onClick={e => handleNumberClick(e)}>7</button>

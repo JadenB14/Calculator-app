@@ -1,0 +1,153 @@
+
+.button-change {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+
+.button-clear {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+
+.button-percent {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+
+.button-divide {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    border: 1px solid rgb(0 0 0);
+    background-color: rgb(212, 141, 7);
+}
+
+.button-divide:hover {
+    border-color: rgb(37 160 218);
+}
+
+/*================================================================*/
+
+.button-zero {
+    width: 120px;
+    height: 60px;
+    font-size: 20px;
+}
+
+.button-decimal {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+
+.button-equal {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    border: 1px solid rgb(0 0 0);
+    background-color: rgb(212, 141, 7);
+
+}
+
+.button-equal:hover {
+    border-color: rgb(37 160 218);
+}
+
+/*================================================================*/
+
+.button-one {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+
+.button-two {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+
+.button-three {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+
+.button-add {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    border: 1px solid rgb(0 0 0);
+    background-color: rgb(212, 141, 7);
+}
+
+.button-add:hover {
+    border-color: rgb(37 160 218);
+}
+
+/*================================================================*/
+
+.button-four {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+
+.button-five {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+
+.button-six {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+
+.button-subtract {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    border: 1px solid rgb(0 0 0);
+    background-color: rgb(212, 141, 7);
+}
+
+.button-subtract:hover {
+    border-color: rgb(37 160 218);
+}
+
+/*================================================================*/
+
+.button-seven {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+
+.button-eight {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+
+.button-nine {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+
+.button-multiply {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    border: 1px solid rgb(0 0 0);
+    background-color: rgb(212, 141, 7);
+}
+
+.button-multiply:hover {
+    border-color: rgb(37 160 218);
+}

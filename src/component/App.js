@@ -1,21 +1,25 @@
 import React, { useState} from 'react';
 import Display from './Display';
 import Button from './Button';
-import './App.css';
-import './Button.css'
+import '../styles/App.css';
+import '../styles/Button.css'
 
 function App() {
-  const [total, setTotal] = useState(0);
+  const [nums, setNums] = useState([]);
   const [multiples, setMultiples] = useState([]);
   const [operation, setOperaton] = useState('');
 
   return (
     <>
+      <div className='header'>
+        <h1>My Calculator App</h1>
+        <h3>By: Jaden Bolton</h3>
+      </div>
       <div className='display'>
-        <Display  total={total} multiples={multiples} operation={operation}/>
+        <Display nums={nums} multiples={multiples} operation={operation}/>
       </div>
       <div className='buttons'>
-        <Button setTotal={setTotal} setMultiples={setMultiples} setOperaton={setOperaton} multiples={multiples} operation={operation}/>
+        <Button nums={nums} setNums={setNums} setMultiples={setMultiples} setOperaton={setOperaton} multiples={multiples} operation={operation}/>
       </div>
     </>
   );
