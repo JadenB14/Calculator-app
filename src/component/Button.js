@@ -5,7 +5,7 @@ const [multipleBool, setMultipleBool] = useState(false);
 
   //  Adds the number clicked to the correct array
   //  and limits the total number of elements in
-  //  the array to 13 or 12 when inputting the
+  //  the array to 12 or 10 when inputting the
   //  second portion of the calculations 
   function handleNumberClick(e) {
     const prevMultiples = [...multiples];
@@ -16,7 +16,7 @@ const [multipleBool, setMultipleBool] = useState(false);
         setMultiples([...prevMultiples, e.target.value]);
         return;
     }
-    if (nums.length === 13) return;
+    if (nums.length === 12) return;
     setNums([...prevNums, e.target.value]);
   }
 
@@ -42,9 +42,12 @@ const [multipleBool, setMultipleBool] = useState(false);
     const multiplesPercentage = [...multiples].join('') / 100;
 
     if (multipleBool) {
+      if (multiples.length === 0) return;
       setMultiples(multiplesPercentage.toString().split(''));
       return;
     }
+
+    if (nums.length === 0) return;
     setNums(numsPercentage.toString().split(''));
   }
   
@@ -54,13 +57,14 @@ const [multipleBool, setMultipleBool] = useState(false);
     const newMultiples = [...multiples]
 
     if (multipleBool) {
-        if (!/[.]/.test([...newMultiples].join(''))) {
-            setMultiples([...newMultiples, '.']);
-            return;
-        }
+      if (!/[.]/.test([...newMultiples].join(''))) {
+        setMultiples([...newMultiples, '.']);
+        return;
+      }
     }
+
     if (!/[.]/g.test([...newNums].join(''))) {
-        setNums([...newNums, '.']);  
+      setNums([...newNums, '.']);  
     }
 
   }
@@ -71,9 +75,11 @@ const [multipleBool, setMultipleBool] = useState(false);
     const negMultiples = [...multiples].join('') * -1;
 
     if (multipleBool) {
+      if (multiples.length === 0) return;
       setMultiples(negMultiples.toString().split(''));
     }
   
+    if (nums.length === 0) return;
     setNums(negNums.toString().split(''));
   }
 
@@ -112,23 +118,27 @@ const [multipleBool, setMultipleBool] = useState(false);
     const subtracted = newNums - newMultiples;
     const added = Number(newNums) + Number(newMultiples);
 
-    if (operation === '÷') {      
+    if (operation === '÷') {     
+      if (nums.length === 0 && multiples.length === 0) return;    
       setNums(divided.toString().split(''));      
       reset();      
-    } else if (operation === 'x') {     
+    } else if (operation === 'x') {  
+      if (nums.length === 0 && multiples.length === 0) return;
       setNums(multiplied.toString().split(''))      
       reset();;      
-    } else if (operation === '-') {     
+    } else if (operation === '-') {   
+      if (nums.length === 0 && multiples.length === 0) return;
       setNums(subtracted.toString().split(''));      
       reset();                
-    } else if(operation === '+') {     
+    } else if(operation === '+') {
+      if (nums.length === 0 && multiples.length === 0) return; 
       setNums(added.toString().split(''));      
       reset();      
     }  
 
   }
 
-  //  A helper function to keep the above function
+  //  A helper function to keep the handleEqualsClick() function
   //  cleaner.
   function reset() {
     setMultipleBool(false);
